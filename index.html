@@ -6,6 +6,7 @@
     <title>Pizza skrypt</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
       
       <script>
       function round(n, k)
@@ -19,32 +20,44 @@
            var quantity1 = document.getElementById("quantity1").value;
            var price1 = document.getElementById("price1").value;
            
-           var area1 = 3.14*diameter1/2*diameter1/2;
+           var area1 = 3.14*diameter1/2*diameter1/2*quantity1;
           
-           var sum_per_cm1 = round(price1*quantity1/area1,4)*100;
+           var sum_per_cm1 = (price1*quantity1/area1*100).toFixed(2);
    
           
            var diameter2 = document.getElementById("diameter2").value;
            var quantity2 = document.getElementById("quantity2").value;
            var price2 = document.getElementById("price2").value;
           
-          var area2 = 3.14*diameter2/2*diameter2/2;
+          var area2 = 3.14*diameter2/2*diameter2/2*quantity2;
           
-          var sum_per_cm2 = round(price2*quantity2/area2,4)*100;
+          var sum_per_cm2 = (price2*quantity2/area2*100).toFixed(2);
           
           
           
           if(sum_per_cm1>sum_per_cm2){
-              document.getElementById("pizza1").innerHTML= "Pole wynosi: "+area1+" cm<sup>2</sup><br/>Cena tej pizzy to "+sum_per_cm1+" gr za cm<sup>2</sup> </br>Ta pizza jest droższa";
-              document.getElementById("pizza2").innerHTML= "Pole wynosi: "+area2+" cm<sup>2</sup><br/>Cena tej pizzy to "+sum_per_cm2+" gr za cm<sup>2</sup> </br>Ta pizza jest tańsza";
+              pizza1.innerHTML= "Pole wynosi: "+area1+" cm<sup>2</sup><br/>Cena tej pizzy to "+sum_per_cm1+" gr za cm<sup>2</sup> </br>Ta pizza jest droższa";
+              pizza2.innerHTML= "Pole wynosi: "+area2+" cm<sup>2</sup><br/>Cena tej pizzy to "+sum_per_cm2+" gr za cm<sup>2</sup> </br>Ta pizza jest tańsza";
+                              $("#left").removeClass('is-info');
+                              $("#left").addClass('is-danger');
+                              $("#right").removeClass('is-warning');
+                              $("#right").addClass('is-success');
           }
           else if(sum_per_cm1<sum_per_cm2){
-              document.getElementById("pizza1").innerHTML= "Pole wynosi: "+area1+" cm<sup>2</sup><br/>Cena tej pizzy to "+sum_per_cm1+" gr za cm<sup>2</sup> </br>Ta pizza jest tańsza";
-              document.getElementById("pizza2").innerHTML= "Pole wynosi: "+area2+" cm<sup>2</sup><br/>Cena tej pizzy to "+sum_per_cm2+" gr za cm<sup>2</sup> </br>Ta pizza jest droższa";
+              pizza1.innerHTML= "Pole wynosi: "+area1+" cm<sup>2</sup><br/>Cena tej pizzy to "+sum_per_cm1+" gr za cm<sup>2</sup> </br>Ta pizza jest tańsza";
+              pizza2.innerHTML= "Pole wynosi: "+area2+" cm<sup>2</sup><br/>Cena tej pizzy to "+sum_per_cm2+" gr za cm<sup>2</sup> </br>Ta pizza jest droższa";
+                              $("#left").removeClass('is-info');
+                              $("#left").addClass('is-success');
+                              $("#right").removeClass('is-warning');
+                              $("#right").addClass('is-danger');
           }
           else{
-              document.getElementById("pizza1").innerHTML= "Pole wynosi: "+area1+" cm<sup>2</sup><br/>Cena tej pizzy to "+sum_per_cm1+" gr za cm<sup>2</sup> </br>Ceny są równe";
-              document.getElementById("pizza2").innerHTML= "Pole wynosi: "+area2+" cm<sup>2</sup><br/>Cena tej pizzy to "+sum_per_cm2+" gr za cm<sup>2</sup> </br>Ceny są równe";
+              pizza1.innerHTML= "Pole wynosi: "+area1+" cm<sup>2</sup><br/>Cena tej pizzy to "+sum_per_cm1+" gr za cm<sup>2</sup> </br>Ceny za cm <sup>2</sup> są równe";
+              pizza2.innerHTML= "Pole wynosi: "+area2+" cm<sup>2</sup><br/>Cena tej pizzy to "+sum_per_cm2+" gr za cm<sup>2</sup> </br>Ceny za cm <sup>2</sup> są równe";
+                              $("#left").removeClass('is-info');
+                              $("#left").addClass('is-primary');
+                              $("#right").removeClass('is-warning');
+                              $("#right").addClass('is-primary');
           }
           
           
@@ -59,45 +72,45 @@
 <div class="columns">
     
 
-  <div class="column hero is-info">
+  <div class="column hero is-info" id="left">
         <form>
             <div class="field">
                 <div class="control">
-                    <input class="input is-primary" type="text" placeholder="Średnica (cm)" id="diameter1" required>
+                    <input class="input is-primary" type="number" placeholder="Średnica (cm)" id="diameter1" required>
                 </div>
             </div>
             <div class="field">
                 <div class="control">
-                    <input class="input is-primary" type="text" placeholder="Ilość (sztuki)" id="quantity1" required>
+                    <input class="input is-primary" type="number" placeholder="Ilość (sztuki)" id="quantity1" required>
                 </div>
             </div>
             <div class="field">
                 <div class="control">
-                    <input class="input is-primary" type="text" placeholder="Cena za sztuke" id="price1" required>
+                    <input class="input is-primary" type="number" placeholder="Cena za sztuke" id="price1" required>
                 </div>
             </div>  
         </form>
-      <h2 class="subtitle" id="pizza1">aa</h2>
+      <h2 class="subtitle" id="pizza1"></h2>
   </div>
-  <div class="column hero is-warning">
+  <div class="column hero is-warning" id="right">
         <form>
             <div class="field">
                 <div class="control">
-                    <input class="input is-primary" type="text" placeholder="Średnica (cm)" id="diameter2" required>
+                    <input class="input is-primary" type="number" placeholder="Średnica (cm)" id="diameter2" required>
                 </div>
             </div>
             <div class="field">
                 <div class="control">
-                    <input class="input is-primary" type="text" placeholder="Ilość (sztuki)" id="quantity2" required>
+                    <input class="input is-primary" type="number" placeholder="Ilość (sztuki)" id="quantity2" required>
                 </div>
             </div>
             <div class="field">
                 <div class="control">
-                    <input class="input is-primary" type="text" placeholder="Cena za sztuke" id="price2" required>
+                    <input class="input is-primary" type="number" placeholder="Cena za sztuke" id="price2" required>
                 </div>
             </div>  
         </form>
-      <h2  class="subtitle" id="pizza2">aa</h2>
+      <h2  class="subtitle" id="pizza2"></h2>
   </div>
 </div>
       
