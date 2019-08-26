@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pizza skrypt</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+      
+      <script>
+      function round(n, k)
+          {
+            var factor = Math.pow(10, k);
+            return Math.round(n*factor)/factor;
+          }
+          
+      function calculate(){
+           var diameter1 = document.getElementById("diameter1").value;
+           var quantity1 = document.getElementById("quantity1").value;
+           var price1 = document.getElementById("price1").value;
+          
+           var sum_per_cm1 = round((diameter1/2*quantity1)/price1,2);
+   
+          
+           var diameter2 = document.getElementById("diameter2").value;
+           var quantity2 = document.getElementById("quantity2").value;
+           var price2 = document.getElementById("price2").value;
+          
+          var sum_per_cm2 = round((diameter2/2*quantity2)/price2,2);
+          
+          if(sum_per_cm1>sum_per_cm2){
+              document.getElementById("pizza1").innerHTML= "Cena tej pizzy to "+sum_per_cm1+" zł za cm<sup>2</sup> </br>Ta pizza jest tańsza";
+              document.getElementById("pizza2").innerHTML= "Cena tej pizzy to "+sum_per_cm2+" zł za cm<sup>2</sup> </br>Ta pizza jest droższa";
+          }
+          else if(sum_per_cm1<sum_per_cm2){
+              document.getElementById("pizza1").innerHTML= "Cena tej pizzy to "+sum_per_cm1+" zł za cm<sup>2</sup> </br>Ta pizza jest droższa";
+              document.getElementById("pizza2").innerHTML= "Cena tej pizzy to "+sum_per_cm2+" zł za cm<sup>2</sup> </br>Ta pizza jest tańsza";
+          }
+          else{
+              document.getElementById("pizza1").innerHTML= "Cena tej pizzy to "+sum_per_cm1+" zł za cm<sup>2</sup> </br>Ceny są równe";
+              document.getElementById("pizza2").innerHTML= "Cena tej pizzy to "+sum_per_cm2+" zł za cm<sup>2</sup> </br>Ceny są równe";
+          }
+          
+          
+          
+      }
+      </script>
+      
+  </head>
+  <body>
+  <section class="section has-text-centered">
+      <h1 class="title is-1 green">Podaj wymiary pizzy i zobacz która się bardziej opłaca</h1><br/>
+<div class="columns">
+    
+
+  <div class="column hero is-info">
+        <form>
+            <div class="field">
+                <div class="control">
+                    <input class="input is-primary" type="text" placeholder="Średnica (cm)" id="diameter1" required>
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <input class="input is-primary" type="text" placeholder="Ilość (sztuki)" id="quantity1" required>
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <input class="input is-primary" type="text" placeholder="Cena za sztuke" id="price1" required>
+                </div>
+            </div>  
+        </form>
+      <h2 class="subtitle" id="pizza1">aa</h2>
+  </div>
+  <div class="column hero is-warning">
+        <form>
+            <div class="field">
+                <div class="control">
+                    <input class="input is-primary" type="text" placeholder="Średnica (cm)" id="diameter2" required>
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <input class="input is-primary" type="text" placeholder="Ilość (sztuki)" id="quantity2" required>
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <input class="input is-primary" type="text" placeholder="Cena za sztuke" id="price2" required>
+                </div>
+            </div>  
+        </form>
+      <h2  class="subtitle" id="pizza2">aa</h2>
+  </div>
+</div>
+      
+
+                    <input class="button is-primary is-medium" type="submit" value="Oblicz" onclick="calculate()">
+      
+                
+
+  </section>
+  </body>
+</html>
