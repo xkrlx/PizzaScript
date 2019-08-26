@@ -18,27 +18,33 @@
            var diameter1 = document.getElementById("diameter1").value;
            var quantity1 = document.getElementById("quantity1").value;
            var price1 = document.getElementById("price1").value;
+           
+           var area1 = 3.14*diameter1/2*diameter1/2;
           
-           var sum_per_cm1 = round((diameter1/2*quantity1)/price1,2);
+           var sum_per_cm1 = round(price1*quantity1/area1,4)*100;
    
           
            var diameter2 = document.getElementById("diameter2").value;
            var quantity2 = document.getElementById("quantity2").value;
            var price2 = document.getElementById("price2").value;
           
-          var sum_per_cm2 = round((diameter2/2*quantity2)/price2,2);
+          var area2 = 3.14*diameter2/2*diameter2/2;
+          
+          var sum_per_cm2 = round(price2*quantity2/area2,4)*100;
+          
+          
           
           if(sum_per_cm1>sum_per_cm2){
-              document.getElementById("pizza1").innerHTML= "Cena tej pizzy to "+sum_per_cm1+" zł za cm<sup>2</sup> </br>Ta pizza jest tańsza";
-              document.getElementById("pizza2").innerHTML= "Cena tej pizzy to "+sum_per_cm2+" zł za cm<sup>2</sup> </br>Ta pizza jest droższa";
+              document.getElementById("pizza1").innerHTML= "Pole wynosi: "+area1+" cm<sup>2</sup><br/>Cena tej pizzy to "+sum_per_cm1+" gr za cm<sup>2</sup> </br>Ta pizza jest droższa";
+              document.getElementById("pizza2").innerHTML= "Pole wynosi: "+area2+" cm<sup>2</sup><br/>Cena tej pizzy to "+sum_per_cm2+" gr za cm<sup>2</sup> </br>Ta pizza jest tańsza";
           }
           else if(sum_per_cm1<sum_per_cm2){
-              document.getElementById("pizza1").innerHTML= "Cena tej pizzy to "+sum_per_cm1+" zł za cm<sup>2</sup> </br>Ta pizza jest droższa";
-              document.getElementById("pizza2").innerHTML= "Cena tej pizzy to "+sum_per_cm2+" zł za cm<sup>2</sup> </br>Ta pizza jest tańsza";
+              document.getElementById("pizza1").innerHTML= "Pole wynosi: "+area1+" cm<sup>2</sup><br/>Cena tej pizzy to "+sum_per_cm1+" gr za cm<sup>2</sup> </br>Ta pizza jest tańsza";
+              document.getElementById("pizza2").innerHTML= "Pole wynosi: "+area2+" cm<sup>2</sup><br/>Cena tej pizzy to "+sum_per_cm2+" gr za cm<sup>2</sup> </br>Ta pizza jest droższa";
           }
           else{
-              document.getElementById("pizza1").innerHTML= "Cena tej pizzy to "+sum_per_cm1+" zł za cm<sup>2</sup> </br>Ceny są równe";
-              document.getElementById("pizza2").innerHTML= "Cena tej pizzy to "+sum_per_cm2+" zł za cm<sup>2</sup> </br>Ceny są równe";
+              document.getElementById("pizza1").innerHTML= "Pole wynosi: "+area1+" cm<sup>2</sup><br/>Cena tej pizzy to "+sum_per_cm1+" gr za cm<sup>2</sup> </br>Ceny są równe";
+              document.getElementById("pizza2").innerHTML= "Pole wynosi: "+area2+" cm<sup>2</sup><br/>Cena tej pizzy to "+sum_per_cm2+" gr za cm<sup>2</sup> </br>Ceny są równe";
           }
           
           
